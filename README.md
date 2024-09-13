@@ -1,4 +1,4 @@
-# SmartLocAI API Gateway
+# SmartLocAI - API Gateway
 
 ![apidashboard](https://drive.google.com/uc?export=view&id=1nLfyO8j-ET7qwEC6WuSksV5xHHLruYg-)
 
