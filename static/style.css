@@ -1,0 +1,118 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
+
+.container {
+    margin: 50px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th {
+    background-color: #f2f2f2;
+    text-align: left;
+}
+
+button {
+    padding: 8px 12px;
+    color: white;
+    background-color: #d9534f;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #c9302c;
+}
+
+form {
+    margin-top: 20px;
+}
+
+input[type="text"], select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.action {
+    display: flex;
+    justify-content: space-between;
+    /*Elementi n colonna*/
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; /* Aggiunge uno spazio di 20px tra gli elementi */
+}
+
+.container {
+    margin: 50px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.json-response {
+    background-color: #f5f5f5;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+.test-route-form {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.test-route-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.test-route-form input[type="text"],
+.test-route-form select,
+.test-route-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.test-route-form button {
+    padding: 10px 15px;
+    color: white;
+    background-color: #5cb85c;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.test-route-form button:hover {
+    background-color: #4cae4c;
+}

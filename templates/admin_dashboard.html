@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - API Gateway</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/styles/default.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Admin Dashboard - API Gateway</h1>
+
+        <h2>Current Route Mappings</h2>
+        <table>
+            <tr>
+                <th>Endpoint</th>
+                <th>External URL</th>
+                <th>Action</th>
+            </tr>
+            {% for endpoint, url in routes.items() %}
+            <tr>
+                <td>{{ endpoint }}</td>
+                <td>{{ url }}</td>
+                <td>
+                    <div class="action">
+                        <form method="POST" action="{{ url_for('delete_route', endpoint_name=endpoint) }}">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <a href="{{ url_for('edit_route', endpoint_name=endpoint) }}">
+                            <button>Edit</button>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <h2>Add New Route</h2>
+        <form method="POST" action="{{ url_for('add_route') }}" class="test-route-form">
+            <label for="endpoint">Endpoint:</label>
+            <input type="text" id="endpoint" name="endpoint" required><br><br>
+            <label for="external_url">External URL:</label>
+            <input type="text" id="external_url" name="external_url" required><br><br>
+            <button type="submit">Add Route</button>
+        </form>
+
+        <h2>Test Route</h2>
+        <form method="POST" action="{{ url_for('test_route') }}" class="test-route-form">
+            <label for="endpoint">Select Endpoint:</label>
+            <select id="endpoint" name="endpoint">
+                {% for endpoint, url in routes.items() %}
+                    <option value="{{ endpoint }}">{{ endpoint }}</option>
+                {% endfor %}
+            </select><br><br>
+
+            <label for="method">HTTP Method:</label>
+            <select id="method" name="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                <option value="PUT">PUT</option>
+                <option value="DELETE">DELETE</option>
+            </select><br><br>
+
+            <label for="params">Query Parameters (key1=value1&key2=value2):</label>
+            <input type="text" id="params" name="params"><br><br>
+
+            <label for="body">JSON Body (for POST/PUT):</label>
+            <textarea id="body" name="body" rows="5" cols="30"></textarea><br><br>
+
+            <label for="headers">Headers (JSON format):</label>
+            <textarea id="headers" name="headers" rows="3" cols="30" placeholder='{"Authorization": "Bearer token"}'></textarea><br><br>
+
+            <button type="submit">Test Route</button>
+        </form>
+
+        {% if status_code %}
+        <h2>Response</h2>
+        <p>Status Code: {{ status_code }}</p>
+       <pre class="json-response"><code>{{ response }}</code></pre>
+        {% endif %}
+
+        {% if error %}
+        <h2>Error</h2>
+        <pre>{{ error }}</pre>
+        {% endif %}
+
+        <h2>Logout</h2>
+        <form method="POST" action="{{ url_for('logout') }}">
+            <button type="submit">Logout</button>
+        </form>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.0/highlight.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        document.querySelectorAll('pre.json-response').forEach((block) => {
+            hljs.highlightBlock(block);
+        });
+    });
+</script>
+</html>

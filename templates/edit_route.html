@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Route</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="action">
+            <div>
+                <h1>Edit Route</h1>
+                <form method="POST" action="{{ url_for('edit_route', endpoint_name=endpoint_name) }}">
+                    <label for="new_endpoint">New Endpoint:</label>
+                    <input type="text" id="new_endpoint" name="new_endpoint" value="{{ endpoint_name }}" required><br><br>
+                    <label for="new_external_url">New External URL:</label>
+                    <input type="text" id="new_external_url" name="new_external_url" value="{{ external_url }}" required><br><br>
+                    <button type="submit">Update Route</button>
+                </form>
+            </div>
+            <div>
+                <a href="{{ url_for('admin_dashboard') }}">
+                    <button>Back to Admin Dashboard</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

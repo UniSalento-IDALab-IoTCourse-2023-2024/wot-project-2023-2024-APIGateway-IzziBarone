@@ -1,0 +1,29 @@
+services:
+
+  api-gateway:
+    build: .
+    container_name: api-gateway
+    restart: unless-stopped
+    ports:
+      - "8087:80"
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
+      DB_URI: mongodb://db:27017/
+    env_file:
+      - .env
+
+
+  db:
+    image: mongo:latest
+    container_name: gateway-db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  mongo-data:
